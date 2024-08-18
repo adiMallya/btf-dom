@@ -86,11 +86,11 @@ function render(todo) {
                 if (editBtn.innerText === '✏️') {
                     const edit = document.createElement('input')
                     edit.setAttribute('type', 'text');
-                    edit.setAttribute('value', task);
-                    span.appendChild(edit);
+                    edit.value = task;
+                    li.replaceChild(edit, span);
                     editBtn.textContent = '🆗'
                 } else {
-                    const newLabel = span.querySelector('input').value.trim();
+                    const newLabel = li.querySelector('input[type="text"]').value.trim();
                     if (newLabel) editTask(id, newLabel);
                 }
             });
