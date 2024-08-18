@@ -77,6 +77,10 @@ function render(todo) {
             checkbox.checked = completed;
             checkbox.addEventListener('change', () => toggleComplete(id));
 
+            const span1 = document.createElement('span')
+            span1.appendChild(checkbox);
+            span1.appendChild(span);
+
             // Append Edit
             const editBtn = document.createElement('button');
             editBtn.setAttribute('type', 'button');
@@ -87,8 +91,8 @@ function render(todo) {
                     const edit = document.createElement('input')
                     edit.setAttribute('type', 'text');
                     edit.value = task;
-                    li.replaceChild(edit, span);
-                    editBtn.textContent = '🆗'
+                    span1.replaceChild(edit, span);
+                    editBtn.textContent = 'OK'
                 } else {
                     const newLabel = li.querySelector('input[type="text"]').value.trim();
                     if (newLabel) editTask(id, newLabel);
@@ -102,10 +106,12 @@ function render(todo) {
             removeBtn.textContent = '❌';
             removeBtn.addEventListener('click', () => removeTask(id));
 
-            li.appendChild(checkbox);
-            li.appendChild(span);
-            li.appendChild(editBtn);
-            li.appendChild(removeBtn);
+        
+            const span2 = document.createElement('span')
+            span2.appendChild(editBtn);
+            span2.appendChild(removeBtn);
+            li.appendChild(span1);
+            li.appendChild(span2)
             toDoList.appendChild(li);
         })
     }
