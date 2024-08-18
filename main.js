@@ -41,6 +41,12 @@ function toggleComplete(id) {
     myToDo.toggleComplete(id);
     render(myToDo);
 }
+// Edit/update
+function editTask(id, newText) {
+    myToDo.update(id, newText);
+    render(myToDo);
+}
+
 
 // Rendering
 function render(todo) {
@@ -57,30 +63,48 @@ function render(todo) {
         // Creating component
         todos.forEach(({ id, task, completed }) => {
             const li = document.createElement('li');
-            const span = document.createElement('span');
-            span.textContent = task;
             li.setAttribute('data-id', id);
             li.classList.add('task');
 
             // Mark completed or not
+            const span = document.createElement('span');
+            span.textContent = task;
             completed ? span.classList.add('completed') : span.classList.remove('completed');
 
-            // Append complete button
-            const completeBtn = document.createElement('button');
-            completeBtn.setAttribute('type', 'button');
-            completeBtn.classList.add('btn');
-            completeBtn.textContent = completed ? 'Undo' : 'Done';
-            completeBtn.addEventListener('click', () => toggleComplete(id));
+            // Append checkbox
+            const checkbox = document.createElement('input');
+            checkbox.setAttribute('type', 'checkbox');
+            checkbox.checked = completed;
+            checkbox.addEventListener('change', () => toggleComplete(id));
+
+            // Append Edit
+            const editBtn = document.createElement('button');
+            editBtn.setAttribute('type', 'button');
+            editBtn.classList.add('btn');
+            editBtn.textContent = '✏️';
+            editBtn.addEventListener('click', () => {
+                if (editBtn.innerText === '✏️') {
+                    const edit = document.createElement('input')
+                    edit.setAttribute('type', 'text');
+                    edit.setAttribute('value', task);
+                    span.appendChild(edit);
+                    editBtn.textContent = '🆗'
+                } else {
+                    const newLabel = span.querySelector('input').value.trim();
+                    if (newLabel) editTask(id, newLabel);
+                }
+            });
 
             // Append remove button
             const removeBtn = document.createElement('button');
             removeBtn.setAttribute('type', 'button');
-            completeBtn.classList.add('btn');
-            removeBtn.textContent = 'Remove';
+            removeBtn.classList.add('btn');
+            removeBtn.textContent = '❌';
             removeBtn.addEventListener('click', () => removeTask(id));
 
+            li.appendChild(checkbox);
             li.appendChild(span);
-            li.appendChild(completeBtn);
+            li.appendChild(editBtn);
             li.appendChild(removeBtn);
             toDoList.appendChild(li);
         })
