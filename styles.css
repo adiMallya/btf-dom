@@ -1,0 +1,108 @@
+:root {
+    --primary: #60a5fa;
+    --secondary: #93c5fd;
+    --bg-color: #bfdbfe;
+    --primary-font-color: #ffff;
+    --secondary-font-color: #cbd5e1;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: "Ubuntu", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 2rem 0;
+    background-color: var(--bg-color);
+    font-weight: 600;
+    text-align: center;
+    color: var(--primary-font-color);
+}
+
+.container {
+    background-color: #fff;
+    max-width: 30rem;
+    margin: auto;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 8px;
+    overflow: hidden;
+}
+
+header {
+    background-color: var(--primary);
+    padding: .2rem 0;
+}
+
+.btn {
+    padding: .3rem;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 8px;
+    background-color: #fff;
+    font-weight: 600;
+}
+
+.toDoForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+#toDoInput {
+    padding: .45rem 1rem;
+    border: none;
+    border-radius: .25rem;
+    font-size: 1em;
+}
+
+#toDoInput:focus {
+    outline: var(--secondary);
+}
+
+.toDoList {
+    padding-inline-start: 0;
+    list-style: none;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.task {
+    border: 2px solid var(--primary);
+    margin: 0 .75rem .75rem;
+    padding: 1rem;
+    border-radius: .3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary);
+    color: var(--primary-font-color);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px;
+    cursor: pointer;
+}
+
+.task span {
+    display: flex;
+    gap: .6rem;
+}
+
+.task span.completed {
+    text-decoration: line-through;
+}
+
+.task input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: #22c55e;
+}
+.task input[type="text"] {
+    border: none;
+    outline: none;
+}
