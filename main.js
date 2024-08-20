@@ -72,13 +72,22 @@ function render(todo) {
             completed ? span.classList.add('completed') : span.classList.remove('completed');
 
             // Append checkbox
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('checkbox');
+
             const checkbox = document.createElement('input');
             checkbox.setAttribute('type', 'checkbox');
+            checkbox.setAttribute('id', `$check${id}`);
             checkbox.checked = completed;
             checkbox.addEventListener('change', () => toggleComplete(id));
 
+            const tick = document.createElement('label');
+            tick.setAttribute('for', `$check${id}`);
+            wrapper.appendChild(checkbox);
+            wrapper.appendChild(tick);
+
             const span1 = document.createElement('span')
-            span1.appendChild(checkbox);
+            span1.appendChild(wrapper);
             span1.appendChild(span);
 
             // Append Edit
