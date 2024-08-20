@@ -4,11 +4,12 @@ class Todo {
         this.id = init?.length;
     }
 
-    add(todo) {
+    add(todo, date) {
         const newTask = {
             id: this.id++,
             task: todo,
-            completed: false
+            completed: false,
+            date: date
         }
         this.todoList = [...this.todoList, newTask];
     }
