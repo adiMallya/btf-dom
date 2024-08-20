@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap');
+
 :root {
-    --primary: #60a5fa;
-    --secondary: #93c5fd;
-    --bg-color: #bfdbfe;
+    --primary: #66bb6a;
+    --secondary: #ffff;
+    --bg-color: #bbf7d0;
     --primary-font-color: #ffff;
-    --secondary-font-color: #cbd5e1;
+    --secondary-font-color: #64748b;
 }
 
 *,
@@ -40,7 +41,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.2) 1.4px 2.8px 8px;
+    box-shadow: var(--primary) 1.4px 2.8px 8px;
     overflow: hidden;
 }
 
@@ -77,10 +78,7 @@ header {
     border: none;
     border-radius: .25rem;
     font-size: 1em;
-}
-
-#toDoInput:focus {
-    outline: var(--secondary);
+    outline: none;
 }
 
 .toDoList {
@@ -114,7 +112,8 @@ header {
 .checkbox {
     position: relative;
 }
-.checkbox label{
+
+.checkbox label {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 50%;
@@ -125,7 +124,8 @@ header {
     top: 0;
     left: 0;
 }
-.checkbox label:after{
+
+.checkbox label:after {
     border: 2px solid #fff;
     border-top: none;
     border-right: none;
@@ -138,20 +138,26 @@ header {
     transform: rotate(-45deg);
     opacity: 0;
 }
+
 .checkbox input[type="checkbox"] {
     visibility: hidden;
 }
-.checkbox input[type="checkbox"]:checked + label{
+
+.checkbox input[type="checkbox"]:checked+label {
     background-color: #66bb6a;
     border-color: #66bb6a;
 }
-.checkbox input[type="checkbox"]:checked + label:after{
+
+.checkbox input[type="checkbox"]:checked+label:after {
     opacity: 1;
 }
 
 .task input[type="text"] {
     border: none;
+    border-radius: .2rem;
+    padding: .3rem .5rem;
     outline: none;
+    color: var(--secondary-font-color);
 }
 
 footer {
