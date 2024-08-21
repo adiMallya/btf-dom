@@ -95,6 +95,7 @@ header {
     color: var(--secondary-font-color);
     font-weight: 600;
     padding: .65rem 0;
+    text-align: center;
 }
 
 .dateHeader{
