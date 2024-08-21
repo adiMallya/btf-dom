@@ -1,3 +1,7 @@
+export function fetchFromStore(){
+    const locallyStored = localStorage.getItem('myTodos');
+    return JSON.parse(locallyStored) ?? [];
+}
 
 export const groupTasksByDate = (todos = []) => {
     return todos.reduce((groups, task) => {

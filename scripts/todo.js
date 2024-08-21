@@ -12,14 +12,17 @@ class Todo {
             date: date
         }
         this.todoList = [...this.todoList, newTask];
+        this.saveToLocal();
     }
 
     remove(id) {
         this.todoList = this.todoList.filter((item, _) => item.id !== id);
+        this.saveToLocal();
     }
 
     update(id, updatedTodo) {
         this.todoList = this.todoList.map((item, idx) => item.id === id ? { ...item, task: updatedTodo } : item);
+        this.saveToLocal();
     }
 
     getAll() {
@@ -38,6 +41,10 @@ class Todo {
         this.todoList = this.todoList.map(item =>
             item.id === id ? { ...item, completed: !item.completed } : item
         )
+    }
+
+    saveToLocal() {
+        localStorage.setItem('myTodos', JSON.stringify(this.todoList));
     }
 }
 

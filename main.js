@@ -1,25 +1,12 @@
 import Todo from "./scripts/todo.js";
-import { groupTasksByDate } from "./scripts/utils.js";
+import { fetchFromStore, groupTasksByDate } from "./scripts/utils.js";
 
 const toDoList = document.querySelector('.toDoList');
 const toDoForm = document.querySelector('.toDoForm');
 const toDoInput = document.querySelector('#toDoInput');
 const toDoDate = document.querySelector('#toDoDate');
 // State
-const myToDo = new Todo([
-    {
-        id: 0,
-        task: "Run 2km Today",
-        completed: true,
-        date: "2024-07-29"
-    },
-    {
-        id: 1,
-        task: "Read for 20min Today",
-        completed: false,
-        date: "2024-08-20"
-    }
-]);
+const myToDo = new Todo(fetchFromStore());
 // First render
 render(myToDo);
 
@@ -50,7 +37,7 @@ function toggleComplete(id) {
 // Edit/update
 function editTask(id, newText) {
     myToDo.update(id, newText);
-    render(myToDo);
+    render(myToDo); 
 }
 
 
