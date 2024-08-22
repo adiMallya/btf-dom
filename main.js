@@ -1,3 +1,4 @@
+import MemCache from "./scripts/cache.js";
 import Todo from "./scripts/todo.js";
 import { fetchFromStore, groupTasksByDate } from "./scripts/utils.js";
 
@@ -7,6 +8,7 @@ const toDoInput = document.querySelector('#toDoInput');
 const toDoDate = document.querySelector('#toDoDate');
 // State
 const myToDo = new Todo(fetchFromStore());
+const cache = new MemCache();
 // First render
 render(myToDo);
 
@@ -43,9 +45,17 @@ function editTask(id, newText) {
 
 // Rendering
 function render(todo) {
-    toDoList.innerHTML = '';
-
     const todos = todo.getAll();
+    
+    if (cache.has(todos)) {
+        console.log('In cache - render skipped');
+        return;
+    }
+
+    cache.set(todos);
+    console.log('Cached. Will render');
+
+    toDoList.innerHTML = '';
 
     if (!todos.length) {
         const message = document.createElement('li');
